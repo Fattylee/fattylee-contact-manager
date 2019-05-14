@@ -1,5 +1,5 @@
 {
-  "name": "fattylee-indecision-app",
+  "name": "fattylee-contact-manager",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,9 +7,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "build-babel": "babel src/app.js --out-file public/app.js --presets env,react --watch",
-    "serve": "live-server public",
+    "serve": "live-server src/playground/b-4-p",
     "dev": "webpack-dev-server",
-    "webpack": "webpack"
+    "deploy": "gh-pages -d public"
   },
   "dependencies": {
     "live-server": "1.2.1",
@@ -37,7 +37,7 @@
     "bootstrap": "4.3.1"
   },
   "devDependencies": {
-    
+    "gh-pages": "2.0.1"
   },
   "keywords": ["react", "todo", "javascript"],
   "author": "Fatai Balogun",

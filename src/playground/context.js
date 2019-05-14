@@ -1,6 +1,7 @@
 import React ,{ Component, createContext, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import 'normalize.css';
+//import 'normalize.css';
+import './b-4-p/bs/css/bootstrap-4.0.0-beta.css';
 import './style.less';
 
 
@@ -57,9 +58,9 @@ class Root extends Component {
     <Provider>
       
              <div>
-              <h1>This is an Entry Point</h1>
-              <button onClick={resetAll.bind(Provider)}>Click Me For Good</button>
-              
+              <h1>Contact Manager App</h1>
+              <button>Click Me For Good</button>
+              <AddPerson />
               <Persons />
              </div>
      
@@ -67,9 +68,7 @@ class Root extends Component {
     );
   }
 }
-const resetAll = () => {
-  console.log(this);
-}
+
 
 const Persons = () => {
   return (
@@ -112,29 +111,36 @@ const handleClick = (id, patch ) => {
   };
   patch(action);
 };
-  
-// see what this.props.children does
-class Abu extends Component {
-  render() {
-    return (<Fragment>
-    {this.props.children ||
-    <p>Nothing special</p>}
-    </Fragment>)
-  }
-}
-class Print extends Component {
-  render() {
-    return (
-    <div>
-    <h1>Some header</h1>
-    <Abu>
+
+class AddPerson extends Component {
+  render () {
+  return (
+  <Fragment>
     
-     {/* <div> I love coding <button>Random Click</button>
-      </div> */}
-      
-    </Abu>
-    </div>
-    );
+<div className="card">
+  <div className="card-header">
+    Add Person
+  </div>
+  <div className="card-body">
+    <form className="form">
+      <div className="form-group">
+        <label htmlFor="name">Name</label>
+        <input type="text" name="name" id="name" className="form-control" placeholder="Name" />
+      </div>
+       <div className="form-group">
+        <label htmlFor="email">Email</label>
+        <input type="email" name="email" id="email" className="form-control" placeholder="Email..."/>
+      </div>
+       <div className="form-group">
+        <label htmlFor="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" className="form-control" placeholder="Tel no."/>
+      </div>
+      <input type="button" value="Submit" className="btn btn-block" /> 
+    </form>
+  </div>
+</div>
+  </Fragment>
+  );
   }
 }
 

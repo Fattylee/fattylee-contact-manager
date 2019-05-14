@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bootstrap 4 tutorial</title>
+<link rel="stylesheet" href="./bs/css/bootstrap-4.0.0-beta.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class ="bg-info ">
+<h1 class ="display-1 text-success">display-1 </h1>
+<h1 class ="display-2">display-2 </h1>
+<h1 class ="display-3">display-3 </h1>
+<h1 class ="display-4">display-4 </h1>
+<h1 class ="display-5 jumbotron">display-1 </h1>
+<h2 class="bg-primary p-4 mt-4">H2 header ok next look</h2>
+<div class="card">
+  <div class="card-header">
+    This a header
+  </div>
+  <div class="card-body">
+    <form class="form">
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" name="name" id="name" class="form-control" placeholder="Name" onfocus="true"/>
+      </div>
+       <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control" placeholder="Email..."/>
+      </div>
+       <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="tel" name="phone" id="phone" class="form-control" placeholder="Tel no."/>
+      </div>
+      <input type="button" value="Submit" class="btn btn-block"> 
+    </form>
+  </div>
+</div>
+<!-- this is a comment
+	<h1 style="margin-top:60px ">the best tutorial in the universe</h1>
+	
+	<nav class ="navbar navbar-default navbar-inverse navbar-fixed-top">
+		<div class="container">
+		<div class ="navbar-header">
+			<a href ="#" class="navbar-brand">Abu Adnaan</a>
+			<button class ="navbar-toggle collapsed" data-toggle="collapse" data-target="#mydropdown">
+				<span class ="icon-bar"></span>
+				<span class ="icon-bar"></span>
+				<span class ="icon-bar"></span>
+			</button>
+		</div>
+		<div class ="collapse navbar-collapse" id="mydropdown">
+			<ul class ="nav navbar-nav  ">
+				<li class ="active"><a href ="#">Home</a></li>
+				<li><a href ="#">News</a></li>
+				<li><a href ="#">About</a></li>
+				<li><a href ="#">Portfolio</a></li>
+			</ul>
+			<button class ="btn btn-primary navbar-btn navbar-right ">Register</button>		
+			<button class ="btn btn-info navbar-btn navbar-right  ">Login</button>
+			</div>
+		</div>
+	</nav>
+	
+	</div>
+	<div class="container">
+		<ul class ="nav nav-pills nav-justified  nav-stacked  ">
+		<li class ="active"><a href ="#">Eba</a></li>
+		<li><a href ="#">Amala</a></li>
+		<li><a href ="#">Iyan</a></li>
+		<li><a href ="#">Semo</a></li>
+		</ul>
+		
+	</div>
+	<div class ="dropdown">
+		<button type="button" class ="btn btn-primary dropdown-toggle" data-toggle ="dropdown" >
+		drop down <span class ="caret"></span>
+		</button>
+		<ul class ="dropdown-menu">
+		<li><a href ="#">Eba</a></li>
+		<li><a href ="#">Amala</a></li>
+		<li><a href ="#">Iyan</a></li>
+		<li><a href ="#">Semo</a></li>
+		</ul>
+		
+
+	</div>
+	
+	<div>
+	<a href ="#"
+	data-toggle="tooltip"
+	data-placement="bottom"
+	title="This is a dead simple tooltip example that I'm about to display. hurray! "
+	class ="btn btn-primary">More info... </a>
+	<a href ="#" class ="btn btn-default active btn-lg  active">a tag</a>
+	<button class ="btn btn-default ">btn default</button>
+	<button class ="btn btn-default btn-xs">btn default</button>
+	<button class ="btn btn-default btn-sm">btn default</button>
+	<button class ="btn btn-primary btn-lg">btn primary</button>
+	<button class ="btn btn-primary active ">btn primary and active</button>
+	<button class ="btn btn-primary disabled ">btn primary and disabled</button>
+	<button class ="btn btn-primary" disabled >btn primary and disabled</button>
+	<button class ="btn btn-info">btn info</button>
+	<button class ="btn btn-danger">btn danger</button>
+	<button class ="btn btn-warning ">btn warning</button>
+	<button class ="btn btn-success ">btn success</button>
+	<button class ="btn btn-primary ">Badge <span class ="badge">45</span></button>
+	<button class ="btn btn-warning  ">Label <span class ="label label-danger">45</span></button>
+	</div>
+	<p>this is just a practice </p>
+	<button class="btn btn-primary">click me </button>
+	<div class="h1 text-primary text-warning text-danger">make a div appears as h1 elemeny</div>
+	
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-offset-4 col-xs-4 fatty">6</div>
+			<div class="col-xs-offset-4 col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty">4</div>
+			<div class="col-xs-2 fatty ">46</div>
+			<div class="col-xs-2 fatty ">9</div>
+		</div>
+		<div class ="row">
+			<div class ="col-xs-6 col-xs-push-6"> Main</div>
+			<div class ="col-xs-6 col-xs-pull-6 ">SideBar</div>
+		</div>
+	</div>
+	<div class ="container">
+	<div class ="row">
+	<div class ="col-xs-6">
+	<form>
+		<div class ="form-group">
+		<label class ="sr-only">Name</label>
+		<input type ="text" name ="name" placeholder="Name" class ="form-control">
+		</div>
+		<label for="email">Email</label>
+		<input type ="text" id="email" name ="email" placeholder="Email">
+		<label class ="checkbox-inline"><input type ="checkbox"> Physics</label>
+	</form>
+	</div></div>
+	-->
+
+		<!--script type="text/javascript" src="./bs/js/jquery-3.2.1.slim.min.js"></script>
+			<script type="text/javascript" src="./bs/js/popper.min.js"></script>
+	<script type="text/javascript" src="./bs/js/bootstrap-4.0.0-beta.js"></script>
+	<script type="text/javascript">
+		$(".nav li").on("click", function() {
+			$(".nav li").removeClass("active");
+			$(this).addClass("active");
+		});
+		$(function(){
+		$("[data-toggle='tooltip']").tooltip();
+		});
+	</script-->
+</body>
+</html>
