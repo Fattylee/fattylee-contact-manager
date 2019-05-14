@@ -1,15 +1,20 @@
-import React, { Component, Fragment } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Fragment } from 'react';
 
-class Contacts extends Component {
-  render() {
+import { Context } from '../context';
+
+const Contacts = () => {
     return (
-      <Fragment>
-        Contacts
-      </Fragment>
+      <Context.Consumer>
+        { state => {
+          return (
+            <Fragment>
+              Contacts {console.log(state)}
+            </Fragment>
+           )
+        }}
+      </Context.Consumer>
     )
-  }
-}
+};
 
 export default Contacts;
 
