@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
-//import 'bootstrap/dist/css/bootstrap.min.css';
-import 'normalize.css';
-import './styles/style.less';
 
+import ContactManager from './components/ContactManager';
+
+/*
 const handleClick = (num, num1, e) => {
   console.log('event',num, num1, e.target)
 };
@@ -66,5 +65,6 @@ const root = (
     </div>
   </BrowserRouter>
 );
+*/
 
-ReactDOM.render(root, document.querySelector('#app-root'));
+ReactDOM.render(<ContactManager />, document.querySelector('#app-root'));
