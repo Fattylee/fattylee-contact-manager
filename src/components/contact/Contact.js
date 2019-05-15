@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-// import { Context } from '../context';
 
 const Contact = ({ contact: { id, name, email, phone }, dispatch }) => {
   return (

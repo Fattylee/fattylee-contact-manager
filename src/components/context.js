@@ -15,6 +15,11 @@ const reducer = (state, action) => {
         ...state,
         showContact: !state.showContact,
       }
+    case 'TOGGLE_ADD_CONTACT':
+      return {
+        ...state,
+        isAddContactOpen: !state.isAddContactOpen,
+      }
     default: 
       return state;
   }
@@ -44,6 +49,7 @@ export class Provider extends Component {
     ],
     dispatch: (action) => this.setState(() => reducer(this.state, action)),
     showContact: true,
+    isAddContactOpen: true,
   };
   
   render() {

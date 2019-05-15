@@ -7,6 +7,7 @@ import '../styles/bootstrap-4.0.0-beta.min.css';
 import '../styles/style.less';
 import Header from './Header';
 import Contacts from './contact/Contacts';
+import AddContact from './contact/AddContact';
 import { Provider, Context } from './context';
 
 class ContactManager extends Component {
@@ -16,6 +17,7 @@ class ContactManager extends Component {
     <Provider>
       <Header branding={'CM'} />
       <div className='container'>
+        <AddContact />
         <Contacts />
       </div>
     </Provider>
