@@ -10,6 +10,11 @@ const reducer = (state, action) => {
         ...state,
         contacts: state.contacts.filter(contact => contact.id !== action.payload.id),
       };
+    case 'TOGGLE_CONTACTS':
+      return {
+        ...state,
+        showContact: !state.showContact,
+      }
     default: 
       return state;
   }
@@ -38,6 +43,7 @@ export class Provider extends Component {
       },
     ],
     dispatch: (action) => this.setState(() => reducer(this.state, action)),
+    showContact: true,
   };
   
   render() {

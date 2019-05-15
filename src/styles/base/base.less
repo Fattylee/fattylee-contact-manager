@@ -1,9 +1,18 @@
-.flex() {
+.flex {
   display: flex;
   justify-content: space-between;
-  padding: @m-size;
 }
 
 body {
-  background: #666;
+  background: darken(@body, 30%);
+}
+.bg-grey {
+  background: @body;
+  color: white;
+}
+button, i {
+  cursor: pointer;
+  &:disabled {
+    cursor: default;
+  }
 }

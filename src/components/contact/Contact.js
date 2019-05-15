@@ -5,12 +5,16 @@ const Contact = ({ contact: { id, name, email, phone }, dispatch }) => {
   return (
       <Fragment>
         <div className='card mb-3'>
-          <div className='card-header'>Name: {name}</div>
-          <div className='card-body'>
+          <div className='card-header flex'>
+            <div>Name: {name}</div>
+            <i  onClick={handleRemove.bind(null, id, dispatch)}
+            className='fas fa-times text-danger'
+            ></i>
+          </div>
+          <div className='card-body bg-grey'>
             <div>Email: {email}</div>
             <div>Phone: {phone}</div>
           </div>
-          <button onClick={handleRemove.bind(null, id, dispatch)}>Remove {name}</button>
         </div>
       </Fragment>    
     );       

@@ -25,6 +25,7 @@ module.exports = {
           'css-loader',
           'less-loader'
         ],
+        //exclude: /fontawesome-free-5.8.2-web/,
       }
     ]
   },
