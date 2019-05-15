@@ -8,7 +8,7 @@ const reducer = (state, action) => {
     case 'REMOVE_CONTACT':
       return {
         ...state,
-        contacts: state.contacts.filter(contact => contact !== action.payload.id),
+        contacts: state.contacts.filter(contact => contact.id !== action.payload.id),
       };
     default: 
       return state;
@@ -37,7 +37,7 @@ export class Provider extends Component {
         phone: '090-5506-0654',
       },
     ],
-    dispatch: (action) => reducer(this.state, action),
+    dispatch: (action) => this.setState(() => reducer(this.state, action)),
   };
   
   render() {
