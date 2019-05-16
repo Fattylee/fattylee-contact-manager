@@ -34,6 +34,22 @@ const reducer = (state, action) => {
         ...state,
         error: action.payload,
       }
+    case 'UPDATE_FORM_INPUT':
+      return {
+        ...state,
+        newContact: {
+          ...state.newContact,
+          ...action.payload,
+        },
+      };
+    case 'CLEAR_FORM_INPUT':
+      return {
+        ...state,
+        newContact: {
+          ...state.newContact,
+          ...action.payload,
+        },
+      };
     default: 
       return state;
   }
@@ -49,7 +65,7 @@ export class Provider extends Component {
         phone: '080-7777-0364',
       },
       {
-        id: 23,
+        id: 2,
         name: 'Ummu Abdillah',
         email: 'abuadnaan@gmail.com',
         phone: '070-6787-0354',
@@ -65,9 +81,9 @@ export class Provider extends Component {
     showContact: true,
     isAddContactOpen: true,
     newContact: {
-      name: ' ',
+      name: '',
       email: '',
-      phone: '987'
+      phone: ''
     },
     error: undefined,
   };

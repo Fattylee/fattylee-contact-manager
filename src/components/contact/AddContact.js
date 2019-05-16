@@ -6,7 +6,7 @@ const AddContact = () => {
   return (
       <Context.Consumer>
       {
-        ({ dispatch, isAddContactOpen, showContact, newContact, error }) => (
+        ({ dispatch, isAddContactOpen, showContact, newContact, error, }) => (
          <Fragment>
           
           <button 
@@ -31,15 +31,24 @@ const AddContact = () => {
       className="form">
       <div className="form-group">
         <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" className="form-control" placeholder="Name..." />
+        <input type="text" name="name" id="name" className="form-control" placeholder="Name..." 
+        value={newContact.name}
+        onChange={controlledInput.bind(this, dispatch)}
+        />
       </div>
        <div className="form-group">
         <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" className="form-control" placeholder="Email..."/>
+        <input type="email" name="email" id="email" className="form-control" placeholder="Email..."
+        value={newContact.email}
+        onChange={controlledInput.bind(undefined, dispatch)}
+        />
       </div>
        <div className="form-group">
         <label htmlFor="phone">Phone</label>
-        <input type="tel" name="phone" id="phone" className="form-control" placeholder="Tel no..."/>
+        <input type="tel" name="phone" id="phone" className="form-control" placeholder="Tel no..."
+        value={newContact.phone}
+        onChange={controlledInput.bind(null, dispatch)}
+        />
       </div>
       <input type="submit" value="Submit" className="btn btn-block" /> 
     </form>
@@ -69,12 +78,32 @@ const handleAddContact = (dispatch, showContact, newContact) => {
   
   dispatch({type: 'ADD_CONTACT'});
   dispatch({type: 'ALERT_ERROR', payload: undefined })
-  dispatch({type: 'CLEAR_INPUT'});
+  dispatch({
+    type: 'CLEAR_FORM_INPUT',
+    payload: {
+      name: '',
+      email: '',
+      phone: '',
+    },
+  });
   dispatch({type: 'TOGGLE_ADD_CONTACT'});
   showContact || dispatch({type: 'TOGGLE_CONTACTS'});
   
 };
 
+const controlledInput = (dispatch, event) => {
+  const fieldName = event.target.name;
+  const fieldValue = event.target.value;
+  console.log(fieldName, fieldValue);
+  dispatch({
+    type: 'UPDATE_FORM_INPUT',
+    payload: {
+      [fieldName]: fieldValue,
+      }
+  });
+  
+  
+};
 
 
 export default AddContact;
