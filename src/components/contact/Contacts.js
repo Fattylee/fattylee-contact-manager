@@ -19,7 +19,10 @@ const Contacts = () => {
               
               {
                 !!!contacts.length ? 
-                <h2 className='text-warning'>No Contact</h2> : // show contact and reverse it before displaying it
+                <h2 className='text-warning'>No Contact</h2> : 
+               <div className='contacts'>
+               {
+                // show contact and reverse it before displaying it
                 showContact && [...contacts].sort((a,b) => b.id - a.id).map(contact => (
                  
                   <Contact 
@@ -28,6 +31,8 @@ const Contacts = () => {
                       dispatch={dispatch}
                 />)
                 )
+                }
+                </div>
                 }
             </Fragment>
            )

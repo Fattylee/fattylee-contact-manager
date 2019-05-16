@@ -18,10 +18,12 @@ const AddContact = () => {
             ></i>
           </button>
           {
-            !!error && !isAddContactOpen && <div className='text-white bg-danger card mb-2 p-3'>{error}</div>    }
+            !!error && !isAddContactOpen && <div className='text-white bg-danger card mb-2 p-3 max-width'>{error} 
+            <span><i className="fas fa-laugh-squint"></i><i className="fas fa-laugh-wink fa-2x text-dark bg-light ml-1"></i></span>
+            </div>    }
           
         {!isAddContactOpen &&
-        <div className="card mb-4">
+        <div className="card mb-4 max-width">
   <div className="card-header">
     New Contact
   </div>
@@ -73,7 +75,7 @@ const handleAddContact = (dispatch, showContact, newContact) => {
   console.log(newContact);
   const { name, email, phone } = newContact;
   if(name == '' || email === '' || phone === '') {
-    return dispatch({type: 'ALERT_ERROR', payload: 'Abeg use ur head fill the forms!'});
+    return dispatch({type: 'ALERT_ERROR', payload: 'Abeg use ur head fill this form!'});
   }
   
   dispatch({type: 'ADD_CONTACT'});

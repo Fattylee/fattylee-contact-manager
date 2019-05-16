@@ -17,7 +17,7 @@ class ContactManager extends Component {
       <Header branding={'CM'} />
       <div className='container'>
         <AddContact />
-        <Contacts />
+        <Contacts className='flex'/>
       </div>
     </Provider>
     </Fragment>
