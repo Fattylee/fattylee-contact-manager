@@ -6,7 +6,7 @@ const AddContact = () => {
   return (
       <Context.Consumer>
       {
-        ({ dispatch, isAddContactOpen }) => (
+        ({ dispatch, isAddContactOpen, showContact, newContact }) => (
          <Fragment>
         {
           <button 
@@ -25,7 +25,9 @@ const AddContact = () => {
     New Contact
   </div>
   <div className="card-body">
-    <form className="form">
+    <form
+      onSubmit={handleAddContact.bind(null, dispatch, showContact, newContact)}
+      className="form">
       <div className="form-group">
         <label htmlFor="name">Name</label>
         <input type="text" name="name" id="name" className="form-control" placeholder="Name..." />
@@ -38,7 +40,7 @@ const AddContact = () => {
         <label htmlFor="phone">Phone</label>
         <input type="tel" name="phone" id="phone" className="form-control" placeholder="Tel no..."/>
       </div>
-      <input type="button" value="Submit" className="btn btn-block" /> 
+      <input type="submit" value="Submit" className="btn btn-block" /> 
     </form>
   </div>
 </div>}
@@ -54,7 +56,25 @@ const handleAddOpen = (dispatch) => {
     type: 'TOGGLE_ADD_CONTACT',
   };
   dispatch(action);
-}
+};
+
+const handleAddContact = (dispatch, showContact, newContact ) => {
+  event.preventDefault();
+  console.log(newContact);
+  const { name, email, phone } = newContact;
+  if(name == false || email == false || phone == false) {
+    return console.log('abfield cannt be empty');
+  }
+  console.log(dispatch, 56);
+  const action = {
+    type: 'ADD_CONTACT',
+  };
+  dispatch(action);
+  dispatch({type: 'TOGGLE_ADD_CONTACT'});
+  showContact || dispatch({type: 'TOGGLE_CONTACTS'});
+};
+
+
 
 export default AddContact;
 

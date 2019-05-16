@@ -19,8 +19,8 @@ const Contacts = () => {
               
               {
                 !!!contacts.length ? 
-                <h2 className='text-warning'>No Contact</h2> : 
-                showContact && contacts.map(contact => (
+                <h2 className='text-warning'>No Contact</h2> : // show contact and reverse it before displaying it
+                showContact && [...contacts].sort((a,b) => b.id - a.id).map(contact => (
                  
                   <Contact 
                       key={contact.id} 
