@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 
 
 import '../styles/bootstrap-4.0.0-beta.min.css';
-//import '../styles/fontawesome-free-5.8.2-web/css/all.css'
 import '../styles/style.less';
 import Header from './Header';
 import Contacts from './contact/Contacts';

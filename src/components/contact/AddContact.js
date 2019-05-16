@@ -6,19 +6,20 @@ const AddContact = () => {
   return (
       <Context.Consumer>
       {
-        ({ dispatch, isAddContactOpen, showContact, newContact }) => (
+        ({ dispatch, isAddContactOpen, showContact, newContact, error }) => (
          <Fragment>
-        {
+          
           <button 
             onClick={handleAddOpen.bind(null, dispatch)}
-            className='mb-2'
+            className='mb-2 btn-contact-open-close'
           >{isAddContactOpen ? 'Add Contact' : 'Close Contact'} {' '}
             <i 
             className={ isAddContactOpen ? "fas fa-plus" : "fas fa-window-close text-danger" }    
             ></i>
           </button>
-        }
-        
+          {
+            !!error && !isAddContactOpen && <div className='text-white bg-danger card mb-2 p-3'>{error}</div>    }
+          
         {!isAddContactOpen &&
         <div className="card mb-4">
   <div className="card-header">
@@ -58,20 +59,20 @@ const handleAddOpen = (dispatch) => {
   dispatch(action);
 };
 
-const handleAddContact = (dispatch, showContact, newContact ) => {
+const handleAddContact = (dispatch, showContact, newContact) => {
   event.preventDefault();
   console.log(newContact);
   const { name, email, phone } = newContact;
-  if(name == false || email == false || phone == false) {
-    return console.log('abfield cannt be empty');
+  if(name == '' || email === '' || phone === '') {
+    return dispatch({type: 'ALERT_ERROR', payload: 'Abeg use ur head fill the forms!'});
   }
-  console.log(dispatch, 56);
-  const action = {
-    type: 'ADD_CONTACT',
-  };
-  dispatch(action);
+  
+  dispatch({type: 'ADD_CONTACT'});
+  dispatch({type: 'ALERT_ERROR', payload: undefined })
+  dispatch({type: 'CLEAR_INPUT'});
   dispatch({type: 'TOGGLE_ADD_CONTACT'});
   showContact || dispatch({type: 'TOGGLE_CONTACTS'});
+  
 };
 
 

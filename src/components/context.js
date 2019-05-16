@@ -29,6 +29,11 @@ const reducer = (state, action) => {
         ...state,
         isAddContactOpen: !state.isAddContactOpen,
       }
+    case 'ALERT_ERROR':
+      return {
+        ...state,
+        error: action.payload,
+      }
     default: 
       return state;
   }
@@ -60,10 +65,11 @@ export class Provider extends Component {
     showContact: true,
     isAddContactOpen: true,
     newContact: {
-      name: '   ',
-      email: 'ghc',
+      name: ' ',
+      email: '',
       phone: '987'
     },
+    error: undefined,
   };
   
   render() {

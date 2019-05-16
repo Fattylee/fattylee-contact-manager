@@ -20,4 +20,11 @@ const contacts = [
     ];
 const res = [...contacts].sort((a,b) => -a.id + b.id)[0].id + 1;
 const test = Boolean('  ');
-console.log(contacts, res, test);
+//console.log(contacts, res, test);
+const obj = { name: '  ', age: ''};
+if(!obj.name   /*|| obj.age === false */) {
+  console.log('this is the truth');
+}
+
+
+// console.log(Boolean(obj.name), Boolean(obj.age));
