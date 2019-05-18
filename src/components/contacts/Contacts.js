@@ -28,7 +28,7 @@ const Contacts = () => {
                <div className='contacts'>
                {
                 // show contact and reverse it before displaying it
-                showContact && [...contacts].sort((a,b) => b.id - a.id).map(contact => (
+                showContact && contacts.map(contact => (
                  
                   <Contact 
                       key={contact.id} 

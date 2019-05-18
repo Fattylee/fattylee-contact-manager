@@ -143,6 +143,13 @@ class AddPerson extends Component {
   );
   }
 }
-
-
+/*
+constructor(props) {
+  super(props);
+  this.nameInput = React.createRef();
+}
+const name = this.nameInput.current.value;
+<input type="text" value="Submit" className="btn btn-block" ref={this.nameInput}/> 
+defaultValue
+*/
 ReactDOM.render(<Root />, document.querySelector('#app-root'));

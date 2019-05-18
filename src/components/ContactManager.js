@@ -4,9 +4,9 @@ import ReactDOM from 'react-dom';
 
 import '../styles/bootstrap-4.0.0-beta.min.css';
 import '../styles/style.less';
-import Header from './Header';
-import Contacts from './contact/Contacts';
-import AddContact from './contact/AddContact';
+import Header from './layouts/Header';
+import Contacts from './contacts/Contacts';
+import AddContact from './contacts/AddContact';
 import { Provider, Context } from './context';
 
 class ContactManager extends Component {
@@ -26,4 +26,3 @@ class ContactManager extends Component {
 }
 
 export default ContactManager;
-

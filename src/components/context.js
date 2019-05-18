@@ -1,5 +1,6 @@
 import React, { Component, Fragment, createContext } from 'react';
 import ReactDOM from 'react-dom';
+import uuid from 'uuid';
 
 export const Context = createContext();
 
@@ -10,14 +11,10 @@ const reducer = (state, action) => {
         ...state,
         contacts: state.contacts.filter(contact => contact.id !== action.payload.id),
       };
-    case 'ADD_CONTACT':
-      let id = 1 ;
-      if(state.contacts.length) id  = [...state.contacts].sort((a,b) => -a.id + b.id)[0].id + 1 ;
-      const payload = { id, ...state.newContact }
-      console.log(payload);
+    case 'ADD_CONTACT':   
       return {
         ...state,
-        contacts:  [...state.contacts, payload],
+        contacts:  [state.newContact, ...state.contacts],
       };
     case 'TOGGLE_CONTACTS':
       return {
@@ -86,6 +83,7 @@ export class Provider extends Component {
     showContact: true,
     isAddContactOpen: true,
     newContact: {
+      id: uuid(),
       name: '',
       email: '',
       phone: '',

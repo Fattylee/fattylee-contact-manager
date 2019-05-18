@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import {Context} from '../context';
+import InputField from '../layouts/InputField';
 
 
 const AddContact = () => {
@@ -31,13 +32,16 @@ const AddContact = () => {
     <form
       onSubmit={handleAddContact.bind(null, dispatch, showContact, newContact)}
       className="form">
-      <div className="form-group">
-        <label htmlFor="name">Name</label>
-        <input type="text" name="name" id="name" className="form-control" placeholder="Name..." 
-        value={newContact.name}
-        onChange={controlledInput.bind(this, dispatch)}
-        />
-      </div>
+      {[['name', 'text'], ['email', 'email'], ['phone', 'tel']].map( attr => (
+      <InputField
+        name={attr[0]}
+        value={newContact[attr[0]]}
+        type={attr[1]}
+        onChange={controlledInput.bind(null, dispatch)}
+      />
+      ))}
+      {
+    /*
        <div className="form-group">
         <label htmlFor="email">Email</label>
         <input type="email" name="email" id="email" className="form-control" placeholder="Email..."
@@ -52,6 +56,7 @@ const AddContact = () => {
         onChange={controlledInput.bind(null, dispatch)}
         />
       </div>
+      */}
       <input type="submit" value="Submit" className="btn btn-block" /> 
     </form>
   </div>
@@ -109,4 +114,3 @@ const controlledInput = (dispatch, event) => {
 
 
 export default AddContact;
-
