@@ -28,3 +28,7 @@ if(!obj.name   /*|| obj.age === false */) {
 
 
 // console.log(Boolean(obj.name), Boolean(obj.age));
+
+const duplicateArrayList = [1,2,1,2,3,3,4];
+const refinedList = [...new Set(duplicateArrayList)];
+console.log(refinedList);

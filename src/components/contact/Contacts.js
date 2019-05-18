@@ -6,13 +6,18 @@ import Contact from './Contact';
 const Contacts = () => {
     return (
       <Context.Consumer>
-        { ({ contacts, dispatch, showContact }) => (
+        { ({ contacts, dispatch, showContact, toggleContactsDetail }) => (
             <Fragment>
               { !!contacts.length && (<h1 className='text-white'>Contact List <span className='px-1'></span>
               <i 
               className={showContact ? "fas fa-caret-square-right" : "fas fa-caret-square-down"}
               onClick={toggleContact.bind(null, dispatch)}
               ></i>
+              <i
+              className={toggleContactsDetail ? "fas fa-list-alt ml-2 text-white" : "fas fa-list-alt ml-2 text-dark"}
+              onClick={toggleContactDetails.bind(null, dispatch)}
+              >
+              </i>
               </h1>)
               }
               
@@ -29,6 +34,7 @@ const Contacts = () => {
                       key={contact.id} 
                       contact={contact} 
                       dispatch={dispatch}
+                      toggleContactsDetail={toggleContactsDetail}
                 />)
                 )
                 }
@@ -46,6 +52,14 @@ const toggleContact = (dispatch) => {
     type: 'TOGGLE_CONTACTS',
   };
   dispatch(action);
-}
-export default Contacts;
+};
 
+const toggleContactDetails = (dispatch) => {
+  console.log('get called!');
+  const action = {
+    type: 'TOGGLE_CONTACTS_DETAILS',
+  };
+  dispatch(action);
+};
+
+export default Contacts;

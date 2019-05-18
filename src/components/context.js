@@ -50,6 +50,11 @@ const reducer = (state, action) => {
           ...action.payload,
         },
       };
+    case 'TOGGLE_CONTACTS_DETAILS':
+      return {
+        ...state,
+        toggleContactsDetail: !state.toggleContactsDetail,
+      };
     default: 
       return state;
   }
@@ -83,9 +88,11 @@ export class Provider extends Component {
     newContact: {
       name: '',
       email: '',
-      phone: ''
+      phone: '',
     },
     error: undefined,
+    showContactDetail: false,
+    toggleContactsDetail: false,
   };
   
   render() {
