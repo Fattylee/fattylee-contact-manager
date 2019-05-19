@@ -1,6 +1,5 @@
 import React, { Component, Fragment, createContext } from 'react';
 import ReactDOM from 'react-dom';
-import uuid from 'uuid';
 
 export const Context = createContext();
 
@@ -14,7 +13,7 @@ const reducer = (state, action) => {
     case 'ADD_CONTACT':   
       return {
         ...state,
-        contacts:  [state.newContact, ...state.contacts],
+        contacts:  [action.payload, ...state.contacts],
       };
     case 'TOGGLE_CONTACTS':
       return {
@@ -29,8 +28,24 @@ const reducer = (state, action) => {
     case 'ALERT_ERROR':
       return {
         ...state,
-        error: action.payload,
-      }
+        newContact: {
+          ...state.newContact,
+          errors: {
+            ...state.newContact.errors,
+            ...action.payload,
+          },
+        },
+      };
+    case 'RESET_ALERT_ERROR':
+      return {
+        ...state,
+        newContact: {
+          ...state.newContact,
+          errors: {
+          
+          },
+        },
+      };
     case 'UPDATE_FORM_INPUT':
       return {
         ...state,
@@ -83,10 +98,10 @@ export class Provider extends Component {
     showContact: true,
     isAddContactOpen: true,
     newContact: {
-      id: uuid(),
       name: '',
       email: '',
       phone: '',
+      errors: {},
     },
     error: undefined,
     showContactDetail: false,

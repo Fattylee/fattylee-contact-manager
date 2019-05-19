@@ -31,4 +31,28 @@ if(!obj.name   /*|| obj.age === false */) {
 
 const duplicateArrayList = [1,2,1,2,3,3,4];
 const refinedList = [...new Set(duplicateArrayList)];
-console.log(refinedList);
+//console.log(refinedList);
+
+const state = {
+  isAddContactOpen: true,
+    newContact: {
+     // id: uuid(),
+      name: {sex: 'male'},
+      email: '',
+      phone: '',
+      errors: {},
+    },
+};
+
+const newState = {
+  ...state,
+  newContact: {
+    ...state.newContact,
+    name: {
+      ...state.newContact.name,
+        firstName: 'fatai', lastName: 'balogun',
+  }
+    }
+};
+
+console.log(state, newState);

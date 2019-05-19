@@ -27,8 +27,9 @@ const Contacts = () => {
                 <h2 className='text-warning'>No Contact</h2> : 
                <div className='contacts'>
                {
-                // show contact and reverse it before displaying it
-                showContact && contacts.map(contact => (
+                // show contact
+               showContact &&
+              contacts.map(contact => (
                  
                   <Contact 
                       key={contact.id} 
@@ -55,7 +56,6 @@ const toggleContact = (dispatch) => {
 };
 
 const toggleContactDetails = (dispatch) => {
-  console.log('get called!');
   const action = {
     type: 'TOGGLE_CONTACTS_DETAILS',
   };

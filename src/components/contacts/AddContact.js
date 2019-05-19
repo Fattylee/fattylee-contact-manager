@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import uuid from 'uuid';
 import {Context} from '../context';
 import InputField from '../layouts/InputField';
 
@@ -32,31 +33,17 @@ const AddContact = () => {
     <form
       onSubmit={handleAddContact.bind(null, dispatch, showContact, newContact)}
       className="form">
-      {[['name', 'text'], ['email', 'email'], ['phone', 'tel']].map( attr => (
+      {[['name', 'text'], ['email', 'email'], ['phone', 'tel']].map( (attr, key) => (
       <InputField
         name={attr[0]}
         value={newContact[attr[0]]}
         type={attr[1]}
         onChange={controlledInput.bind(null, dispatch)}
+        errors={newContact.errors}
+        key={key}
       />
       ))}
-      {
-    /*
-       <div className="form-group">
-        <label htmlFor="email">Email</label>
-        <input type="email" name="email" id="email" className="form-control" placeholder="Email..."
-        value={newContact.email}
-        onChange={controlledInput.bind(undefined, dispatch)}
-        />
-      </div>
-       <div className="form-group">
-        <label htmlFor="phone">Phone</label>
-        <input type="tel" name="phone" id="phone" className="form-control" placeholder="Tel no..."
-        value={newContact.phone}
-        onChange={controlledInput.bind(null, dispatch)}
-        />
-      </div>
-      */}
+      
       <input type="submit" value="Submit" className="btn btn-block" /> 
     </form>
   </div>
@@ -77,14 +64,33 @@ const handleAddOpen = (dispatch) => {
 
 const handleAddContact = (dispatch, showContact, newContact) => {
   event.preventDefault();
-  console.log(newContact);
-  const { name, email, phone } = newContact;
-  if(name == '' || email === '' || phone === '') {
-    return dispatch({type: 'ALERT_ERROR', payload: 'Abeg use ur head fill this form!'});
-  }
   
-  dispatch({type: 'ADD_CONTACT'});
-  dispatch({type: 'ALERT_ERROR', payload: undefined })
+  newContact.id = uuid();
+  const { name, email, phone } = newContact;
+  
+  if(name === '') {
+    return dispatch({
+      type: 'ALERT_ERROR',
+      payload: {name: 'Name field is required'}
+      });
+  }
+  dispatch({type: 'RESET_ALERT_ERROR' });
+  if(email === '') {
+    return dispatch({
+      type: 'ALERT_ERROR',
+      payload: {email: 'Email field is required'}
+      });
+  }
+  dispatch({type: 'RESET_ALERT_ERROR' });
+  if(phone === '') {
+    return dispatch({
+      type: 'ALERT_ERROR',
+      payload: {phone: 'Phone field is required'}
+      });
+  }
+  dispatch({type: 'RESET_ALERT_ERROR' });
+  dispatch({type: 'ADD_CONTACT', payload: newContact });
+  
   dispatch({
     type: 'CLEAR_FORM_INPUT',
     payload: {
@@ -101,7 +107,6 @@ const handleAddContact = (dispatch, showContact, newContact) => {
 const controlledInput = (dispatch, event) => {
   const fieldName = event.target.name;
   const fieldValue = event.target.value;
-  console.log(fieldName, fieldValue);
   dispatch({
     type: 'UPDATE_FORM_INPUT',
     payload: {
