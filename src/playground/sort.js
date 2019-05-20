@@ -55,4 +55,30 @@ const newState = {
     }
 };
 
-console.log(state, newState);
+//console.log(state, newState);
+
+const { isAddContactOpen: i , newContact } = state;
+
+//console.log(i, newContact);
+
+const arr1 = [{id: 1, name: 'abuadnaan'}, {id: 2, name: 'lastName'}];
+
+contactsVisibilities = [
+    {
+      id: 1,
+      visible: false,
+    },
+    {
+      id: 2,
+      visible: false,
+    },
+    {
+      id: 3,
+      visible: false,
+    },
+    ];
+const combinedArr = [];
+arr1.forEach( (arr, i) => {
+  combinedArr.push({...arr, ...contactsVisibilities[i]});
+})
+console.log(combinedArr);

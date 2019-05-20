@@ -6,7 +6,8 @@ import Contact from './Contact';
 const Contacts = () => {
     return (
       <Context.Consumer>
-        { ({ contacts, dispatch, showContact, toggleContactsDetail }) => (
+        { ({ contacts, dispatch, showContact, toggleContactsDetail, }) => {
+         return (
             <Fragment>
               { !!contacts.length && (<h1 className='text-white'>Contact List <span className='px-1'></span>
               <i 
@@ -21,7 +22,6 @@ const Contacts = () => {
               </h1>)
               }
               
-              
               {
                 !!!contacts.length ? 
                 <h2 className='text-warning'>No Contact</h2> : 
@@ -35,14 +35,13 @@ const Contacts = () => {
                       key={contact.id} 
                       contact={contact} 
                       dispatch={dispatch}
-                      toggleContactsDetail={toggleContactsDetail}
                 />)
                 )
                 }
                 </div>
                 }
             </Fragment>
-           )
+           )}
         }
       </Context.Consumer>
     )
@@ -60,6 +59,8 @@ const toggleContactDetails = (dispatch) => {
     type: 'TOGGLE_CONTACTS_DETAILS',
   };
   dispatch(action);
+  dispatch({type: 'CHANGE_ALL_CONTACT_VISIBILITY'});
 };
 
 export default Contacts;
+

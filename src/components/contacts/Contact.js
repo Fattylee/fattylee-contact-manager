@@ -1,29 +1,20 @@
 import React, { Fragment, Component } from 'react';
 import { Context } from '../context';
 
-class Contact extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      showContactDetail: true,
-    };
-  }
-  render() {
-    let buttonClass = 'btn-contact-detail text-dark fas fa-caret-square-';
-    const { contact: { id, name, email, phone }, dispatch, toggleContactsDetail } = this.props;
-    return (
-  
-       <Fragment>
+const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => {
+  let buttonClass = 'btn-contact-detail text-dark fas fa-caret-square-';
+        return (
+       <Fragment> 
         <div className='card mb-3'>
           <div className='card-header flex'>
-            <div>Name: {name} {' '}
-            <button  
+            <div
             onClick={() => {
-              this.setState((prevState) => ({
-                showContactDetail: !prevState.showContactDetail,
-              }));
-            }}
-            disabled={!toggleContactsDetail} className={this.state.showContactDetail ? `${buttonClass}right`: `${buttonClass}down` }
+              dispatch({type: 'TOGGLE_SHOW_CONTACT_DETAIL', payload: id });
+              }
+            }
+            >Name: {name} {' '}
+            <button
+             className={visible ? `${buttonClass}right`: `${buttonClass}down` }
             ></button>
             </div>
             <i  onClick={handleRemove.bind(null, id, dispatch)}
@@ -32,21 +23,17 @@ class Contact extends Component {
             
           </div>
           { 
-            this.state.showContactDetail 
-              &&
-            toggleContactsDetail
+            visible             
               && (
           <div className='card-body bg-grey'>
             <div>Email: {email}</div>
             <div>Phone: {phone}</div>
           </div>
           )}
-          
         </div>
       </Fragment>
-    );       
-  }
-} 
+  )
+};
 
 const handleRemove = (id, dispatch) => {
   const action = {
@@ -54,10 +41,6 @@ const handleRemove = (id, dispatch) => {
     payload: { id, },
   };
   dispatch(action);
-};
-
-const handleShowContactDetail = (dispatch) => {
-  dispatch({type: 'TOGGLE_CONTACT_DETAIL'});
 };
 
 export default Contact;

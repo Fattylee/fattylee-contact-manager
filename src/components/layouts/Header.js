@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 const Header = ({branding}) => {
   return (
@@ -23,5 +24,9 @@ const Header = ({branding}) => {
 Header.defaultProps = {
   branding: 'Contact-Manager',
 };
+
+Header.propTypes = {
+  branding: PropTypes.string.isRequired,
+}
 
 export default Header;

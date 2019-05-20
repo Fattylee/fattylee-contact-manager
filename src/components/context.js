@@ -67,6 +67,29 @@ const reducer = (state, action) => {
         ...state,
         toggleContactsDetail: !state.toggleContactsDetail,
       };
+    case 'TOGGLE_SHOW_CONTACT_DETAIL':
+      return {
+        ...state,
+        contacts: state.contacts.map(contact => {
+          if(action.payload === contact.id) {
+            return {
+              ...contact,
+              visible: !contact.visible,
+            };
+          }
+          return contact;
+        }),
+      };
+    case 'CHANGE_ALL_CONTACT_VISIBILITY':
+      return {
+        ...state,
+        contacts: state.contacts.map( contact => {
+          return {
+            ...contact,
+            visible: state.toggleContactsDetail,
+          }
+        })
+      }
     default: 
       return state;
   }
@@ -80,18 +103,21 @@ export class Provider extends Component {
         name: 'Abu Adnaan',
         email: 'abuadnaan@gmail.com',
         phone: '080-7777-0364',
+        visible: false,
       },
       {
         id: 2,
         name: 'Ummu Abdillah',
         email: 'abuadnaan@gmail.com',
         phone: '070-6787-0354',
+        visible: false,
       },
       {
         id: 3,
         name: 'Fattylee Hack',
         email: 'fattyleehack@gmail.com',
         phone: '090-5506-0654',
+        visible: false,
       },
     ],
     dispatch: (action) => this.setState( prevState => reducer(prevState, action)),
@@ -103,8 +129,6 @@ export class Provider extends Component {
       phone: '',
       errors: {},
     },
-    error: undefined,
-    showContactDetail: false,
     toggleContactsDetail: false,
   };
   

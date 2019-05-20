@@ -14,6 +14,11 @@ const reducer = (state, action) => {
         ...state,
         users: state.users.filter(user => user.id !== action.payload.id)
       };
+    case 'INCREASE_COUNTER':
+    return {
+      ...state,
+      counter: ++state.counter,
+    }
     default: 
       return state;
   }
@@ -40,6 +45,7 @@ class Provider extends Component {
     dispatch: (action) => {
       this.setState(prevState => reducer(prevState, action))
     },
+    counter: 5,
   }
   render () {
     return (
@@ -62,6 +68,8 @@ class Root extends Component {
               <button>Click Me For Good</button>
               <AddPerson />
               <Persons />
+              <Baby />
+              <Toy />
              </div>
      
     </Provider>
@@ -69,8 +77,55 @@ class Root extends Component {
   }
 }
 
+const Baby = () => {console.log('Baby');
+  return (
+  <Context.Consumer>
+    {
+      ({counter}) => (
+       <Fragment>
+        <h1>Baby COUNTER: {counter}
+        <button onClick={() => {
+          //dispatch({type: 'INCREASE_COUNTERy'});
+        }} >INCREASE_COUNTER</button>
+        </h1>
+        <BabyFriend />
+      </Fragment>
+      )
+    }
+  </Context.Consumer>
+  );
+};
 
-const Persons = () => {
+const Toy = () => {console.log('Toy');
+  return (
+  <Context.Consumer>
+    {
+      ({counter, dispatch}) => (
+       <Fragment>
+        <h1>Toy COUNTER: {counter}
+        <button onClick={() => {
+          dispatch({type: 'INCREASE_COUNTER'});
+        }} >INCREASE_COUNTER</button>
+        </h1>
+      </Fragment>
+      )
+    }
+  </Context.Consumer>
+  );
+};
+
+const BabyFriend = () => {console.log('BabyFriend');
+  return (
+  
+       <Fragment>
+        <h1 className='bg-success'>BabyFriend 
+        </h1>
+      </Fragment>
+  
+  );
+};
+
+const Persons = () => {console.log('Persons')
   return (
     <Context.Consumer>
       {
