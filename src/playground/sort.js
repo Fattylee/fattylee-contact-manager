@@ -81,4 +81,71 @@ const combinedArr = [];
 arr1.forEach( (arr, i) => {
   combinedArr.push({...arr, ...contactsVisibilities[i]});
 })
-console.log(combinedArr);
+//console.log(combinedArr);
+
+const nums = [1, 2, 3, 4, 5];
+const sum = nums.reduce((acc, arr) => acc + arr, 10);
+const multiplyAndSum = nums.reduce((acc, arr) => {
+  
+}, 2)
+var flattened = [[0, 1], [2, 3], [4, 5]].reduce((acc, curArr) => {
+  acc.push(...curArr);
+  return acc;
+  }, []);
+  
+var names = ['Alice', 'Bob', 'Tiff', 'Bruce', 'Alice']; 
+const count = names.reduce((acc, curArr, i, arr) => {
+  if( arr[i] === arr[3]) acc++;
+  return acc;
+}, 0);
+
+var people = [ 
+  { name: 'Alice', age: 21 }, 
+  { name: 'Max', age: 20 }, 
+  { name: 'Jane', age: 20 } 
+];
+
+const groupByAge = people.reduce((acc, curArr) => {
+  if( curArr.age in acc) {
+    acc[curArr.age].push(curArr);
+  }
+  else {
+    acc[curArr.age] = [curArr];
+  }
+  return acc;
+}, {});
+
+var friends = [
+  { name: 'Anna', 
+    books: ['Bible', 'Harry Potter'], 
+    age: 21 
+  }, 
+  { 
+    name: 'Bob', 
+    books: ['War and peace', 'Romeo and Juliet'], 
+    age: 26   
+  }, 
+  { 
+    name: 'Alice', 
+    books: ['The Lord of the Rings', 'The Shining'], 
+    age: 18 
+  }
+];
+const allBooks = friends.reduce((acc, curArr) => {
+  return [...acc, ...curArr.books];
+}, []);
+
+var myArray = ['a', 'b', 'a', 'b', 'c', 'e', 'e', 'c', 'd', 'd', 'd', 'd']; 
+
+const refined = [...new Set([...myArray].sort())];
+const refinedReduce = myArray.reduce((acc, curVal) => {
+  if(!acc.includes(curVal)) {
+    return [...acc, curVal]
+  }
+  return acc;
+}, []);
+
+
+console.log(refinedReduce, refined);
+
+

@@ -9,9 +9,12 @@ const Contacts = () => {
         { ({ contacts, dispatch, showContact, toggleContactsDetail, }) => {
          return (
             <Fragment>
-              { !!contacts.length && (<h1 className='text-white'>Contact List <span className='px-1'></span>
+              { !!contacts.length && (
+              <Fragment>
+              <h1 className='text-white display-4'>
+              <span className='h3'>
               <i 
-              className={showContact ? "fas fa-caret-square-right" : "fas fa-caret-square-down"}
+              className={showContact ? "fas fa-caret-square-down" : "fas fa-caret-square-right"}
               onClick={toggleContact.bind(null, dispatch)}
               ></i>
               <i
@@ -19,7 +22,12 @@ const Contacts = () => {
               onClick={toggleContactDetails.bind(null, dispatch)}
               >
               </i>
-              </h1>)
+              </span>
+            
+              <span className='text-danger ml-1'>Contact</span> List 
+              
+              </h1>
+              </Fragment>)
               }
               
               {
@@ -63,4 +71,3 @@ const toggleContactDetails = (dispatch) => {
 };
 
 export default Contacts;
-

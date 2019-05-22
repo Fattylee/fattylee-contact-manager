@@ -14,7 +14,7 @@ const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => 
             }
             >Name: {name} {' '}
             <button
-             className={visible ? `${buttonClass}right`: `${buttonClass}down` }
+             className={visible ? `${buttonClass}down`: `${buttonClass}right` }
             ></button>
             </div>
             <i  onClick={handleRemove.bind(null, id, dispatch)}

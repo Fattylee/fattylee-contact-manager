@@ -13,14 +13,14 @@ const AddContact = () => {
           
           <button 
             onClick={handleAddOpen.bind(null, dispatch)}
-            className='mb-2 btn-contact-open-close'
-          >{isAddContactOpen ? 'Add Contact' : 'Close Contact'} {' '}
+            className='mb-2 btn btn-block btn-contact-open-close'
+          >{!isAddContactOpen ? 'Add Contact' : 'Close New Contact'} {' '}
             <i 
-            className={ isAddContactOpen ? "fas fa-plus" : "fas fa-window-close text-danger" }    
+            className={ !isAddContactOpen ? "fas fa-plus" : "fas fa-window-close text-danger" }    
             ></i>
           </button>
           
-        {!isAddContactOpen &&
+        {isAddContactOpen &&
         <div className="card mb-4 max-width">
   <div className="card-header">
     New Contact
@@ -63,8 +63,10 @@ const handleAddContact = (dispatch, showContact, newContact) => {
   
   newContact.id = uuid();
   newContact.visible = false;
-  const { id, name, email, phone, visible } = newContact;
-  
+  let { id, name, email, phone, visible } = newContact;
+  name = name.trim();
+  email = email.trim();
+  phone = phone.trim();
   if(name === '') {
     return dispatch({
       type: 'ALERT_ERROR',
@@ -79,6 +81,7 @@ const handleAddContact = (dispatch, showContact, newContact) => {
       });
   }
   dispatch({type: 'RESET_ALERT_ERROR' });
+ 
   if(phone === '') {
     return dispatch({
       type: 'ALERT_ERROR',
@@ -115,4 +118,3 @@ const controlledInput = (dispatch, event) => {
 
 
 export default AddContact;
-
