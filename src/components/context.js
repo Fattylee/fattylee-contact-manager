@@ -132,6 +132,39 @@ export class Provider extends Component {
     toggleContactsDetail: false,
   };
   
+  componentWillMount() {
+    try {
+      const contactsExist = localStorage.getItem('contacts');
+      if(contactsExist) {
+      
+         const contacts = JSON.parse(contactsExist);
+      this.setState(prevState => ({
+        contacts,
+      }));
+      }
+      else {
+      const stringifyContacts = JSON.stringify(this.state.contacts);
+      localStorage.setItem('contacts', stringifyContacts);
+      
+    }
+    }
+      catch(e) {
+        console.log('An error occured', e);
+      }
+    
+  }
+  
+  componentDidUpdate(prevProp, prevState) {
+    if(prevState.contacts.length !== this.state.contacts.length) {
+      
+      const stringifyContacts = JSON.stringify(this.state.contacts);
+      
+      localStorage.setItem('contacts', stringifyContacts);
+    
+    console.log('contacts state persisted!');
+    }
+  }
+  
   render() {
     return (
       <Context.Provider value={this.state}>

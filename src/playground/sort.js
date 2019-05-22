@@ -145,7 +145,12 @@ const refinedReduce = myArray.reduce((acc, curVal) => {
   return acc;
 }, []);
 
-
-console.log(refinedReduce, refined);
-
-
+const sRefined = JSON.stringify(refinedReduce);
+//const pRefined = JSON.parse('["a","b","c","e","d"]');
+try {
+const pRefined = JSON.parse('{ "name": "abu Adnaan", age: 31 }')
+console.log(sRefined, pRefined);
+}
+catch(e) {
+  console.log('errors handled succesfully')
+}

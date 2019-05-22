@@ -1,9 +1,12 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Context } from '../context';
 import Contact from './Contact';
 
 
-const Contacts = () => {
+class Contacts extends Component {
+  
+  render() {
     return (
       <Context.Consumer>
         { ({ contacts, dispatch, showContact, toggleContactsDetail, }) => {
@@ -32,7 +35,11 @@ const Contacts = () => {
               
               {
                 !!!contacts.length ? 
-                <h2 className='text-warning'>No Contact</h2> : 
+               
+                <h2 className='text-warning'>No Contact <NavLink  className="btn btn-danger btn-span" to="/contact"><i className='fas fa-plus'></i> Add Contact</NavLink>
+                </h2>
+               
+                : 
                <div className='contacts'>
                {
                 // show contact
@@ -53,6 +60,7 @@ const Contacts = () => {
         }
       </Context.Consumer>
     )
+  }
 };
 
 const toggleContact = (dispatch) => {
@@ -71,3 +79,4 @@ const toggleContactDetails = (dispatch) => {
 };
 
 export default Contacts;
+
