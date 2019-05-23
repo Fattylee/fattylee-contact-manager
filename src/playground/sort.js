@@ -152,5 +152,17 @@ const pRefined = JSON.parse('{ "name": "abu Adnaan", age: 31 }')
 console.log(sRefined, pRefined);
 }
 catch(e) {
-  console.log('errors handled succesfully')
+  //console.log('errors handled succesfully')
 }
+const book = {
+  publisher: {
+    //name: 'fate',
+  },
+};
+
+const { publisher: { name: publisherName = 'anonymous'}} = book;
+
+//console.log('publisherName is', publisherName);
+
+const [, , third = 'ak money'] = [1, 2, ];
+console.log('third is', third);

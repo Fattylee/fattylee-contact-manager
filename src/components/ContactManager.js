@@ -18,15 +18,17 @@ class ContactManager extends Component {
     <Fragment>
     <Provider>
     <Router>
+    <Fragment>
       <Header branding={'CM'} />
       <div className='container'>
         <Switch>
           <Route exact path='/' component={Contacts} />
-          <Route  path='/contact' component={AddContact} />
-          <Route  path='/about' component={About} />
+          <Route exact path="/contact" component={AddContact} />
+          <Route exact path='/about' component={About} />
           <Route component={NotFound} />
         </Switch>
       </div>
+     </Fragment>
     </Router>
     </Provider>
     </Fragment>
@@ -35,4 +37,3 @@ class ContactManager extends Component {
 }
 
 export default ContactManager;
-
