@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 
 import '../styles/bootstrap-4.0.0-beta.min.css';
@@ -17,7 +17,7 @@ class ContactManager extends Component {
     return (
     <Fragment>
     <Provider>
-    <Router basename={process.env.PUBLIC_URL}>
+    <Router>
     <Fragment>
       <Header branding={'CM'} />
       <div className='container'>
