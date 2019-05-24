@@ -17,7 +17,7 @@ class ContactManager extends Component {
     return (
     <Fragment>
     <Provider>
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
     <Fragment>
       <Header branding={'CM'} />
       <div className='container'>
