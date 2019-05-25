@@ -37,7 +37,8 @@
     "bootstrap": "4.3.1",
     "uuid": "3.3.2",
     "classnames": "2.2.6",
-    "prop-types": "15.7.2"
+    "prop-types": "15.7.2",
+    "axios": "0.18.0"
   },
   "devDependencies": {
     "gh-pages": "2.0.1"
