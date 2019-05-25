@@ -1,32 +1,41 @@
 import React, { Fragment, Component } from 'react';
 import {Context} from '../context';
 import InputField from '../layouts/InputField';
+import CLEAR_FORM_INPUT from '../../helpers/CLEAR_FORM_INPUT';
+
 
 let _dispatch;
 
 class EditContact extends Component {
   componentDidMount() {
-    console.log('EditContact componentDidMount');
-    _dispatch({ type: 'EDIT_CONTACT_INPUT', payload: this.props.match.params.id });
+   const id  = this.props.match.params.id;
+   _dispatch({ type: 'EDIT_CONTACT_INPUT', payload: id });
   }
   render () {
   return (
       <Context.Consumer>
       {
-        ({ dispatch, isAddContactOpen, showContact, newContact, }) => {
+        ({ dispatch, newContact, }) => {
           _dispatch = dispatch;
           const id = this.props.match.params.id;
       return  (
          <Fragment>
           
-        {isAddContactOpen &&
+        
         <div className="card mb-4 max-width">
   <div className="card-header">
    <i className='fas fa-feather-alt'></i> Edit Contact
+   <i 
+   className='fas fa-times text-danger float-right'
+   onClick={() => {
+     CLEAR_FORM_INPUT(dispatch);
+     this.props.history.push('/');
+   }}
+   ></i>
   </div>
   <div className="card-body">
     <form
-      onSubmit={handleEditContact.bind(this, dispatch, showContact, newContact, id, this.props)}
+      onSubmit={handleEditContact.bind(this, dispatch, newContact, id, this.props)}
       className="form">
       {[['name', 'text'], ['email', 'email'], ['phone', 'tel']].map( (attr, key) => (
       <InputField
@@ -42,7 +51,7 @@ class EditContact extends Component {
       <input type="submit" value="Update Contact" className="btn btn-block" /> 
     </form>
   </div>
-</div>}
+</div>
       </Fragment>    
         )}
         }
@@ -52,14 +61,7 @@ class EditContact extends Component {
 }
 
 
-const handleAddOpen = (dispatch) => {
-  const action = {
-    type: 'TOGGLE_ADD_CONTACT',
-  };
-  dispatch(action);
-};
-
-const handleEditContact = (dispatch, showContact, newContact, id, props ) => {
+const handleEditContact = (dispatch, newContact, id, props ) => {
   event.preventDefault();
 
   let { name, email, phone, } = newContact;
@@ -91,17 +93,8 @@ const handleEditContact = (dispatch, showContact, newContact, id, props ) => {
   dispatch({type: 'EDIT_CONTACT', payload: {
     id, name, email, phone,
   }, });
-  console.log('handleAddContact', newContact);
-  dispatch({
-    type: 'CLEAR_FORM_INPUT',
-    payload: {
-      name: '',
-      email: '',
-      phone: '',
-    },
-  });
-  //dispatch({type: 'TOGGLE_ADD_CONTACT'});
-  //showContact || dispatch({type: 'TOGGLE_CONTACTS'});
+  
+  CLEAR_FORM_INPUT(dispatch);
   
   props.history.push('/');
 };

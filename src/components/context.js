@@ -22,11 +22,7 @@ const reducer = (state, action) => {
         ...state,
         showContact: !state.showContact,
       }
-    case 'TOGGLE_ADD_CONTACT':
-      return {
-        ...state,
-        isAddContactOpen: !state.isAddContactOpen,
-      }
+    
     case 'ALERT_ERROR':
       return {
         ...state,
@@ -93,8 +89,8 @@ const reducer = (state, action) => {
         })
       };
     case 'EDIT_CONTACT_INPUT':
-      const prepopulateContact = state.contacts.find(contact => contact.id === action.payload);
-      console.log(prepopulateContact, 'prepopulateContact');
+    
+      const prepopulateContact = state.contacts.find(contact => contact.id == action.payload);
       const { name, email, phone } =  prepopulateContact;
       return {
         ...state,
@@ -110,7 +106,7 @@ const reducer = (state, action) => {
         ...state,
         contacts: state.contacts.map( contact => {
           const { id, name, email, phone } = action.payload;
-          if(contact.id === id) {
+          if(contact.id == id) {
             return {
               ...contact,
               name,
@@ -131,7 +127,6 @@ export class Provider extends Component {
     contacts: [],
     dispatch: (action) => this.setState( prevState => reducer(prevState, action)),
     showContact: true,
-    isAddContactOpen: true,
     newContact: {
       name: '',
       email: '',
@@ -142,11 +137,9 @@ export class Provider extends Component {
   };
   
    async componentDidMount() {
-    console.log('componentDidMount Context');
     const apiUrl = 'https://jsonplaceholder.typicode.com/users';
     
     const res = await axios.get(apiUrl);
-    console.log(res.data);
     this.setState(prevState => ({
         contacts: res.data,
       }));
