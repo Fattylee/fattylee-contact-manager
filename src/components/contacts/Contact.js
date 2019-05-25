@@ -1,4 +1,5 @@
 import React, { Fragment, Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Context } from '../context';
 
 const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => {
@@ -17,10 +18,16 @@ const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => 
              className={visible ? `${buttonClass}down`: `${buttonClass}right` }
             ></button>
             </div>
+            <div>
+            <Link to={`/edit/${id}`}>
+              <i 
+            className='fas fa-edit text-secondary mr-3'
+            ></i>
+            </Link>
             <i  onClick={handleRemove.bind(null, id, dispatch)}
             className='fas fa-times text-danger'
             ></i>
-            
+            </div>
           </div>
           { 
             visible             

@@ -89,7 +89,35 @@ const reducer = (state, action) => {
             visible: state.toggleContactsDetail,
           }
         })
-      }
+      };
+    case 'EDIT_CONTACT_INPUT':
+      const prepopulateContact = state.contacts.find(contact => contact.id === action.payload);
+      const { name, email, phone } = prepopulateContact;
+      return {
+        ...state,
+        newContact: {
+          name,
+          email,
+          phone,
+          errors: {},
+        },
+      };
+    case 'EDIT_CONTACT':
+      return {
+        ...state,
+        contacts: state.contacts.map( contact => {
+          const { id, name, email, phone } = action.payload;
+          if(contact.id === id) {
+            return {
+              ...contact,
+              name,
+              email,
+              phone,
+            };
+          }
+          return contact;
+        }),
+      };
     default: 
       return state;
   }
@@ -132,7 +160,7 @@ export class Provider extends Component {
     toggleContactsDetail: false,
   };
   
-  componentWillMount() {
+  componentDidMount() {
     try {
       const contactsExist = localStorage.getItem('contacts');
       if(contactsExist) {
@@ -155,14 +183,10 @@ export class Provider extends Component {
   }
   
   componentDidUpdate(prevProp, prevState) {
-    if(prevState.contacts.length !== this.state.contacts.length) {
-      
       const stringifyContacts = JSON.stringify(this.state.contacts);
       
       localStorage.setItem('contacts', stringifyContacts);
     
-    console.log('contacts state persisted!');
-    }
   }
   
   render() {

@@ -1,24 +1,31 @@
-import React, { Fragment } from 'react';
-import uuid from 'uuid';
+import React, { Fragment, Component } from 'react';
 import {Context} from '../context';
 import InputField from '../layouts/InputField';
 
+let _dispatch;
 
-const AddContact = (props) => {
+class EditContact extends Component {
+  componentDidMount() {
+    _dispatch({ type: 'EDIT_CONTACT_INPUT', payload: this.props.match.params.id });
+  }
+  render () {
   return (
       <Context.Consumer>
       {
-        ({ dispatch, isAddContactOpen, newContact, }) => (
+        ({ dispatch, isAddContactOpen, showContact, newContact, }) => {
+          _dispatch = dispatch;
+          const id = this.props.match.params.id;
+      return  (
          <Fragment>
           
         {isAddContactOpen &&
         <div className="card mb-4 max-width">
   <div className="card-header">
-    <i className='fas fa-plus'></i> Add New Contact
+   <i className='fas fa-feather-alt'></i> Edit Contact
   </div>
   <div className="card-body">
     <form
-      onSubmit={handleAddContact.bind(null, dispatch, newContact, props)}
+      onSubmit={handleEditContact.bind(this, dispatch, showContact, newContact, id, this.props)}
       className="form">
       {[['name', 'text'], ['email', 'email'], ['phone', 'tel']].map( (attr, key) => (
       <InputField
@@ -31,16 +38,18 @@ const AddContact = (props) => {
       />
       ))}
       
-      <input type="submit" value="Add Contact" className="btn btn-block" /> 
+      <input type="submit" value="Update Contact" className="btn btn-block" /> 
     </form>
   </div>
 </div>}
       </Fragment>    
-        )
+        )}
         }
       </Context.Consumer>
     );       
 };
+}
+
 
 const handleAddOpen = (dispatch) => {
   const action = {
@@ -49,12 +58,10 @@ const handleAddOpen = (dispatch) => {
   dispatch(action);
 };
 
-const handleAddContact = (dispatch, newContact, props) => {
+const handleEditContact = (dispatch, showContact, newContact, id, props ) => {
   event.preventDefault();
-  
-  newContact.id = uuid();
-  newContact.visible = false;
-  let { id, name, email, phone, visible } = newContact;
+
+  let { name, email, phone, } = newContact;
   name = name.trim();
   email = email.trim();
   phone = phone.trim();
@@ -80,10 +87,10 @@ const handleAddContact = (dispatch, newContact, props) => {
       });
   }
   dispatch({type: 'RESET_ALERT_ERROR' });
-  dispatch({type: 'ADD_CONTACT', payload: {
-    id, name, email, phone, visible,
+  dispatch({type: 'EDIT_CONTACT', payload: {
+    id, name, email, phone,
   }, });
-  
+  console.log('handleAddContact', newContact);
   dispatch({
     type: 'CLEAR_FORM_INPUT',
     payload: {
@@ -92,7 +99,9 @@ const handleAddContact = (dispatch, newContact, props) => {
       phone: '',
     },
   });
-
+  //dispatch({type: 'TOGGLE_ADD_CONTACT'});
+  //showContact || dispatch({type: 'TOGGLE_CONTACTS'});
+  
   props.history.push('/');
 };
 
@@ -108,4 +117,4 @@ const controlledInput = (dispatch, event) => {
 };
 
 
-export default AddContact;
+export default EditContact;

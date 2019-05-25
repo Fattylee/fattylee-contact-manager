@@ -79,4 +79,3 @@ const toggleContactDetails = (dispatch) => {
 };
 
 export default Contacts;
-

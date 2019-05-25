@@ -15,7 +15,7 @@ const Header = ({branding}) => {
         		  <NavLink exact activeClassName='is-active' className="nav-link" to="/"><i className='fas fa-home'></i> Home</NavLink>
         		</li>
         		<li className="nav-item">
-        		  <NavLink activeClassName='is-active' className="nav-link" to="/contact"><i className='fas fa-plus'></i> Add Contact</NavLink>
+        		  <NavLink activeClassName='is-active' className="nav-link" to="/add"><i className='fas fa-plus'></i> Add Contact</NavLink>
         		</li>
         		<li  className="nav-item">
         		  <NavLink activeClassName='is-active' className="nav-link" to="/about"><i className='fas fa-question-circle'></i> About</NavLink>
