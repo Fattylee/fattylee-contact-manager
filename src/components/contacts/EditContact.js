@@ -6,6 +6,7 @@ let _dispatch;
 
 class EditContact extends Component {
   componentDidMount() {
+    console.log('EditContact componentDidMount');
     _dispatch({ type: 'EDIT_CONTACT_INPUT', payload: this.props.match.params.id });
   }
   render () {

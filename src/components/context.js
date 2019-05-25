@@ -2,6 +2,7 @@ import React, { Component, Fragment, createContext } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 
+
 export const Context = createContext();
 
 const reducer = (state, action) => {
@@ -93,7 +94,8 @@ const reducer = (state, action) => {
       };
     case 'EDIT_CONTACT_INPUT':
       const prepopulateContact = state.contacts.find(contact => contact.id === action.payload);
-      const { name, email, phone } = prepopulateContact;
+      console.log(prepopulateContact, 'prepopulateContact');
+      const { name, email, phone } =  prepopulateContact;
       return {
         ...state,
         newContact: {
@@ -126,29 +128,7 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
   state = {
-    contacts: [
-      {
-        id: 1,
-        name: 'Abu Adnaan',
-        email: 'abuadnaan@gmail.com',
-        phone: '080-7777-0364',
-        visible: false,
-      },
-      {
-        id: 2,
-        name: 'Ummu Abdillah',
-        email: 'abuadnaan@gmail.com',
-        phone: '070-6787-0354',
-        visible: false,
-      },
-      {
-        id: 3,
-        name: 'Fattylee Hack',
-        email: 'fattyleehack@gmail.com',
-        phone: '090-5506-0654',
-        visible: false,
-      },
-    ],
+    contacts: [],
     dispatch: (action) => this.setState( prevState => reducer(prevState, action)),
     showContact: true,
     isAddContactOpen: true,
@@ -161,33 +141,16 @@ export class Provider extends Component {
     toggleContactsDetail: false,
   };
   
-  componentDidMount() {
+   async componentDidMount() {
+    console.log('componentDidMount Context');
     const apiUrl = 'https://jsonplaceholder.typicode.com/users';
-    fetch(apiUrl)
-      .then(res => res.json())
-      .then(data => this.setState(prevState => ({
-        contacts: data,
-      })))
-    /*
-    try {
-      const contactsExist = localStorage.getItem('contacts');
-      if(contactsExist) {
-      
-         const contacts = JSON.parse(contactsExist);
-      this.setState(prevState => ({
-        contacts,
+    
+    const res = await axios.get(apiUrl);
+    console.log(res.data);
+    this.setState(prevState => ({
+        contacts: res.data,
       }));
-      }
-      else {
-      const stringifyContacts = JSON.stringify(this.state.contacts);
-      localStorage.setItem('contacts', stringifyContacts);
-      
-    }
-    }
-      catch(e) {
-        console.log('An error occured', e);
-      }
-    */
+    
   }
   
   componentDidUpdate(prevProp, prevState) {
