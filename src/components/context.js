@@ -1,5 +1,6 @@
 import React, { Component, Fragment, createContext } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
 
 export const Context = createContext();
 
@@ -161,6 +162,13 @@ export class Provider extends Component {
   };
   
   componentDidMount() {
+    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+    fetch(apiUrl)
+      .then(res => res.json())
+      .then(data => this.setState(prevState => ({
+        contacts: data,
+      })))
+    /*
     try {
       const contactsExist = localStorage.getItem('contacts');
       if(contactsExist) {
@@ -179,7 +187,7 @@ export class Provider extends Component {
       catch(e) {
         console.log('An error occured', e);
       }
-    
+    */
   }
   
   componentDidUpdate(prevProp, prevState) {
