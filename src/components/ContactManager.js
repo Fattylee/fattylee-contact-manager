@@ -10,6 +10,7 @@ import Contacts from './contacts/Contacts';
 import AddContact from './contacts/AddContact';
 import EditContact from './contacts/EditContact';
 import About from './pages/About';
+import NavBar from './pages/NavBar';
 import NotFound from './pages/NotFound';
 import { Provider, Context } from './context';
 
@@ -27,6 +28,7 @@ class ContactManager extends Component {
           <Route exact path="/add" component={AddContact} />
           <Route exact path="/edit/:id" component={EditContact} />
           <Route exact path='/about' component={About} />
+          <Route exact path='/navbar' component={NavBar} />
           <Route component={NotFound} />
         </Switch>
       </div>
