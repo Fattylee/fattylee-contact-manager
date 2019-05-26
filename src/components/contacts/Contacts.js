@@ -36,7 +36,7 @@ class Contacts extends Component {
               {
                 !!!contacts.length ? 
                
-                <h2 className='text-warning'>No Contact <NavLink  className="btn btn-danger btn-span" to="/contact"><i className='fas fa-plus'></i> Add Contact</NavLink>
+                <h2 className='text-warning'>No Contact <NavLink  className="btn btn-danger btn-span" to="/add"><i className='fas fa-plus'></i> Add Contact</NavLink>
                 </h2>
                
                 : 

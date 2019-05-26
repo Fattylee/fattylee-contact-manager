@@ -14,12 +14,15 @@ const Header = ({branding}) => {
    	    {branding}
    	    </NavLink>
    	    
-   	     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+   	     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+   	     onClick={(e) => e.target.classList.toggle('collapsed')
+   	     }
+   	     > 
    
    <span className="icon-bar top-bar"></span>
 
 	<span className="icon-bar middle-bar"></span>
-
+		<span className="icon-bar middle-bar"></span>
 	<span className="icon-bar bottom-bar"></span>	
 
 

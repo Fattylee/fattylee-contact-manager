@@ -20,42 +20,33 @@
   color: red;
 }
 
-// hamburger icon style
-.icon-bar {
+@move: 9px;
+.navbar-toggler {
+  padding: 8px;
+  border: none;
+  outline: none !important;
+  //border: solid 2px black !important;
+  .icon-bar {
   width: 22px;
   height: 2px;
   display: block;
   margin-top: 4px;
+  position: relative;
   background-color: #B6B6B6;
-  	transition: all 0.2s;
-}
-.navbar-toggler {
-  border: none;
-  background: transparent !important;
+  	transition: all 0.1s;
+  	}
 }
 
-.navbar-toggler .top-bar {
-  transform: rotate(45deg);
-  transform-origin: 10% 10%;
-}
- 
-.navbar-toggler .middle-bar {
+.navbar-toggler.collapsed	.icon-bar.middle-bar {
+  width: 0;
   opacity: 0;
-}
- 
-.navbar-toggler .bottom-bar {
-  transform: rotate(-45deg);
-  transform-origin: 10% 90%;
-}
- 
-.navbar-toggler.collapsed .top-bar {
-  transform: rotate(0);
-}
- 
-.navbar-toggler.collapsed .middle-bar {
-  opacity: 1;
-}
- 
-.navbar-toggler.collapsed .bottom-bar {
-  transform: rotate(0);
-}
+  }
+.navbar-toggler.collapsed .icon-bar.top-bar {
+    transform: rotate(-45deg);
+    top: @move
+  }
+  
+.navbar-toggler.collapsed .icon-bar.bottom-bar {
+    transform: rotate(45deg);
+    top: -@move
+  }
