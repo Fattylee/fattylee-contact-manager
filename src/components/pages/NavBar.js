@@ -5,9 +5,6 @@ import PropTypes from 'prop-types';
 const NavBar = () => {
   return (
     <Fragment>
-      <div className='display-4 text-white mb-3'>NavBar Contact Manager Page</div>
-      <p className='lead text-white mb-3'>App to manage contacts</p>
-      <p className='text-secondary'> version 1.0.0</p>
 
 	<nav className="navbar navbar-expand-lg navbar-light bg-light">
 	<a className="navbar-brand" href="#">Navbar</a>

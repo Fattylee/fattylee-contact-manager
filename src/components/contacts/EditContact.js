@@ -26,7 +26,7 @@ class EditContact extends Component {
   <div className="card-header">
    <i className='fas fa-feather-alt'></i> Edit Contact
    <i 
-   className='fas fa-times text-danger float-right'
+   className='fas fa-times-circle text-danger float-right'
    onClick={() => {
      CLEAR_FORM_INPUT(dispatch);
      this.props.history.push('/');
