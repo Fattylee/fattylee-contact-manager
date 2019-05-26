@@ -1,24 +1,38 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, Component } from 'react';
 import uuid from 'uuid';
 import {Context} from '../context';
 import InputField from '../layouts/InputField';
+import CLEAR_FORM_INPUT from '../../helpers/CLEAR_FORM_INPUT';
 
-
-const AddContact = (props) => {
+let _dispatch;
+class AddContact extends Component {
+  
+  componentDidMount() {
+    CLEAR_FORM_INPUT(_dispatch)
+  }
+  render () {
   return (
       <Context.Consumer>
       {
-        ({ dispatch, isAddContactOpen, newContact, }) => (
+        ({ dispatch, newContact, }) => {
+        _dispatch = dispatch;
+        return (
          <Fragment>
           
-        {isAddContactOpen &&
         <div className="card mb-4 max-width">
   <div className="card-header">
     <i className='fas fa-plus'></i> Add New Contact
+    <i 
+   className='fas fa-times text-danger float-right'
+   onClick={() => {
+     CLEAR_FORM_INPUT(dispatch);
+     this.props.history.push('/');
+   }}
+   ></i>
   </div>
   <div className="card-body">
     <form
-      onSubmit={handleAddContact.bind(null, dispatch, newContact, props)}
+      onSubmit={handleAddContact.bind(null, dispatch, newContact, this.props)}
       className="form">
       {[['name', 'text'], ['email', 'email'], ['phone', 'tel']].map( (attr, key) => (
       <InputField
@@ -34,20 +48,14 @@ const AddContact = (props) => {
       <input type="submit" value="Add Contact" className="btn btn-block" /> 
     </form>
   </div>
-</div>}
+</div>
       </Fragment>    
-        )
+        )}
         }
       </Context.Consumer>
-    );       
+    )};       
 };
 
-const handleAddOpen = (dispatch) => {
-  const action = {
-    type: 'TOGGLE_ADD_CONTACT',
-  };
-  dispatch(action);
-};
 
 const handleAddContact = (dispatch, newContact, props) => {
   event.preventDefault();
@@ -84,15 +92,7 @@ const handleAddContact = (dispatch, newContact, props) => {
     id, name, email, phone, visible,
   }, });
   
-  dispatch({
-    type: 'CLEAR_FORM_INPUT',
-    payload: {
-      name: '',
-      email: '',
-      phone: '',
-    },
-  });
-
+  CLEAR_FORM_INPUT(dispatch);
   props.history.push('/');
 };
 

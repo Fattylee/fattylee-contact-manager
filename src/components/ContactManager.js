@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 
-import '../styles/bootstrap-4.0.0-beta.min.css';
+//import '../styles/bootstrap-4.0.0-beta.min.css';
 import '../styles/style.less';
 import Header from './layouts/Header';
 import Contacts from './contacts/Contacts';
@@ -20,7 +20,7 @@ class ContactManager extends Component {
     <Provider>
     <Router>
     <Fragment>
-      <Header branding={'CM'} />
+      <Header branding={ innerWidth <= 420 ? 'CM' : 'Contact-Manager' } />
       <div className='container'>
         <Switch>
           <Route exact path='/' component={Contacts} />

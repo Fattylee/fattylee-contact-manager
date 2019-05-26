@@ -7,13 +7,13 @@ const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => 
         return (
        <Fragment> 
         <div className='card mb-3'>
-          <div className='card-header flex'>
+          <h5 className='card-header flex'>
             <div
             onClick={() => {
               dispatch({type: 'TOGGLE_SHOW_CONTACT_DETAIL', payload: id });
               }
             }
-            >Name: {name} {' '}
+            >{name} {' '}
             <button
              className={visible ? `${buttonClass}down`: `${buttonClass}right` }
             ></button>
@@ -28,7 +28,7 @@ const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => 
             className='fas fa-times text-danger'
             ></i>
             </div>
-          </div>
+          </h5>
           { 
             visible             
               && (

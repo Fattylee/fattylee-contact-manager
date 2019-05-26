@@ -1,3 +1,61 @@
 .is-active {
   font-weight: bolder;
+  color: white !important;
+  @media (max-width: 400px) {
+    border-bottom: 1px solid white !important;
+    transition: border-bottom 0.3s linear;
+  }
+  
+}
+.nav-link {
+  //color: white !important;
+  @media (max-width: 400px) {
+    border-bottom: 1px solid darken(white, 30%);
+  }
+  
+}
+.nav-shadow {
+  background: white;
+  box-shadow: 2px 2px 5px white ;
+  color: red;
+}
+
+// hamburger icon style
+.icon-bar {
+  width: 22px;
+  height: 2px;
+  display: block;
+  margin-top: 4px;
+  background-color: #B6B6B6;
+  	transition: all 0.2s;
+}
+.navbar-toggler {
+  border: none;
+  background: transparent !important;
+}
+
+.navbar-toggler .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+ 
+.navbar-toggler .middle-bar {
+  opacity: 0;
+}
+ 
+.navbar-toggler .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+ 
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+ 
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+ 
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
 }

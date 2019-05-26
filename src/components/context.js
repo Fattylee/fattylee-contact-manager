@@ -1,5 +1,7 @@
 import React, { Component, Fragment, createContext } from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+
 
 export const Context = createContext();
 
@@ -20,11 +22,7 @@ const reducer = (state, action) => {
         ...state,
         showContact: !state.showContact,
       }
-    case 'TOGGLE_ADD_CONTACT':
-      return {
-        ...state,
-        isAddContactOpen: !state.isAddContactOpen,
-      }
+    
     case 'ALERT_ERROR':
       return {
         ...state,
@@ -91,8 +89,9 @@ const reducer = (state, action) => {
         })
       };
     case 'EDIT_CONTACT_INPUT':
-      const prepopulateContact = state.contacts.find(contact => contact.id === action.payload);
-      const { name, email, phone } = prepopulateContact;
+    
+      const prepopulateContact = state.contacts.find(contact => contact.id == action.payload);
+      const { name, email, phone } =  prepopulateContact;
       return {
         ...state,
         newContact: {
@@ -107,7 +106,7 @@ const reducer = (state, action) => {
         ...state,
         contacts: state.contacts.map( contact => {
           const { id, name, email, phone } = action.payload;
-          if(contact.id === id) {
+          if(contact.id == id) {
             return {
               ...contact,
               name,
@@ -125,32 +124,9 @@ const reducer = (state, action) => {
 
 export class Provider extends Component {
   state = {
-    contacts: [
-      {
-        id: 1,
-        name: 'Abu Adnaan',
-        email: 'abuadnaan@gmail.com',
-        phone: '080-7777-0364',
-        visible: false,
-      },
-      {
-        id: 2,
-        name: 'Ummu Abdillah',
-        email: 'abuadnaan@gmail.com',
-        phone: '070-6787-0354',
-        visible: false,
-      },
-      {
-        id: 3,
-        name: 'Fattylee Hack',
-        email: 'fattyleehack@gmail.com',
-        phone: '090-5506-0654',
-        visible: false,
-      },
-    ],
+    contacts: [],
     dispatch: (action) => this.setState( prevState => reducer(prevState, action)),
     showContact: true,
-    isAddContactOpen: true,
     newContact: {
       name: '',
       email: '',
@@ -160,25 +136,13 @@ export class Provider extends Component {
     toggleContactsDetail: false,
   };
   
-  componentDidMount() {
-    try {
-      const contactsExist = localStorage.getItem('contacts');
-      if(contactsExist) {
-      
-         const contacts = JSON.parse(contactsExist);
-      this.setState(prevState => ({
-        contacts,
+   async componentDidMount() {
+    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+    
+    const res = await axios.get(apiUrl);
+    this.setState(prevState => ({
+        contacts: res.data,
       }));
-      }
-      else {
-      const stringifyContacts = JSON.stringify(this.state.contacts);
-      localStorage.setItem('contacts', stringifyContacts);
-      
-    }
-    }
-      catch(e) {
-        console.log('An error occured', e);
-      }
     
   }
   
