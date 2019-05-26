@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { Context } from '../context';
 
 const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => {
@@ -42,11 +43,14 @@ const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => 
   )
 };
 
-const handleRemove = (id, dispatch) => {
+const handleRemove = async (id, dispatch) => {
   const action = {
     type: 'REMOVE_CONTACT',
     payload: { id, },
   };
+  const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  const res = await axios.delete(`${apiUrl}/${id}`);
+  console.log(res);
   dispatch(action);
 };
 
