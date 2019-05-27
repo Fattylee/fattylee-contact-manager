@@ -1,5 +1,6 @@
 import React, { Fragment, Component } from 'react';
 import uuid from 'uuid';
+import axios from 'axios';
 import {Context} from '../context';
 import InputField from '../layouts/InputField';
 import CLEAR_FORM_INPUT from '../../helpers/CLEAR_FORM_INPUT';
@@ -57,12 +58,11 @@ class AddContact extends Component {
 };
 
 
-const handleAddContact = (dispatch, newContact, props) => {
+const handleAddContact = async (dispatch, newContact, props) => {
   event.preventDefault();
   
-  newContact.id = uuid();
   newContact.visible = false;
-  let { id, name, email, phone, visible } = newContact;
+  let { name, email, phone, visible } = newContact;
   name = name.trim();
   email = email.trim();
   phone = phone.trim();
@@ -88,10 +88,20 @@ const handleAddContact = (dispatch, newContact, props) => {
       });
   }
   dispatch({type: 'RESET_ALERT_ERROR' });
-  dispatch({type: 'ADD_CONTACT', payload: {
-    id, name, email, phone, visible,
-  }, });
   
+  const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  const payload = {
+     name, email, phone, visible,
+  };
+  try {
+  const res = await axios.post(apiUrl, payload);
+  console.log(res, 'ADD_CONTACT');
+  payload.id = res.data.id;
+  dispatch({type: 'ADD_CONTACT', payload, });
+  }
+  catch(e) {
+    console.log('Something went wrong. Try again pls.', e.message);
+  }
   CLEAR_FORM_INPUT(dispatch);
   props.history.push('/');
 };

@@ -50,7 +50,6 @@ const handleRemove = async (id, dispatch) => {
   };
   const apiUrl = 'https://jsonplaceholder.typicode.com/users';
   const res = await axios.delete(`${apiUrl}/${id}`);
-  console.log(res);
   dispatch(action);
 };
 
