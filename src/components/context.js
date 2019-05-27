@@ -117,6 +117,15 @@ const reducer = (state, action) => {
           return contact;
         }),
       };
+    case 'SHOW_ALL_CONTACTS_DETAILS':
+      return {
+        ...state,
+        contacts: state.contacts.map(contact => {
+          contact.visible = true;
+          return contact;
+        }),
+        toggleContactsDetail: true,
+      };
     default: 
       return state;
   }
@@ -137,13 +146,22 @@ export class Provider extends Component {
   };
   
    async componentDidMount() {
-    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
     
+    const isLargScreen = window.innerWidth > 420;
+    
+    const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+    try {
     const res = await axios.get(apiUrl);
     this.setState(prevState => ({
         contacts: res.data,
       }));
-    
+    if(isLargScreen ){
+      this.state.dispatch({type: 'SHOW_ALL_CONTACTS_DETAILS'});
+    }
+    }
+    catch(e) {
+      console.log('Something went wrong, Pls try again.', e.message);
+    }
   }
   
   componentDidUpdate(prevProp, prevState) {

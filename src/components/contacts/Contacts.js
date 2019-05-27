@@ -5,7 +5,6 @@ import Contact from './Contact';
 
 
 class Contacts extends Component {
-  
   render() {
     return (
       <Context.Consumer>
