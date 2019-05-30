@@ -80,7 +80,7 @@ const sortByDate = () => ({
 });
 
 // sorByAmount
-const sorByAmount = () => ({
+const sortByAmount = () => ({
   type: 'SORT_BY_AMOUNT',
   sortBy: 'amount',
 });
@@ -163,6 +163,12 @@ const getVisibility = (expenses, { text, sortBy, startDate, endDate }) => {
     const textMatch = expense.description.toLowerCase().includes(text.toLowerCase());
     
     return startDateMatch && endDateMatch && textMatch;
+  })
+  .sort((a,b) => {
+    if(sortBy === 'date') {
+      return b.createdAt - a.createdAt;
+    }
+    return b.amount - a.amount;
   });
 };
 
@@ -212,14 +218,15 @@ store.dispatch(addExpense({
   }));
 */
 //store.dispatch(setTextFilter('rent'));
-store.dispatch(addExpense({createdAt: 10, description: 'team Rivendell'}));
-store.dispatch(setTextFilter('team'));
-store.dispatch(addExpense({ createdAt: 16, description: 'Fattylee hacked'}));
-//store.dispatch(sortByDate(73883883));
+store.dispatch(addExpense({createdAt: 110, description: 'team Rivendell', amount: 20, }));
+//store.dispatch(setTextFilter('team'));
+store.dispatch(addExpense({ createdAt: 16, description: 'Fattylee hacked', amount: 30, }));
+store.dispatch(sortByDate());
 store.dispatch(addExpense());
-//store.dispatch(sorByAmount(300));
+//store.dispatch(sorByAmount());
 //store.dispatch(addExpense());
 store.dispatch(setStartDate(1));
 store.dispatch(addExpense());
 store.dispatch(setEndDate(111));
 store.dispatch(addExpense());
+

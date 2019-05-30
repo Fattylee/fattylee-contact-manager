@@ -4,9 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const outputPath = path.join(__dirname, 'public/');
 
 module.exports = {
-  //entry: './src/app.js',
+  entry: './src/app.js',
   //entry: './src/playground/context.js',
-  entry: './src/playground/redux.js',
+  //entry: './src/playground/redux.js',
   output: {
     path: outputPath,
     filename: 'bundle.js',

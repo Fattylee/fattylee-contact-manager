@@ -18,7 +18,11 @@ const contacts = [
         phone: '090-5506-0654',
       },
     ];
-const res = [...contacts].sort((a,b) => -a.id + b.id)[0].id + 1;
+const res = [...contacts].sort((a,b) => -a.id + b.id);
+res.unshift(3,5);
+res.push(6,7)
+console.log(res);
+
 const test = Boolean('  ');
 //console.log(contacts, res, test);
 const obj = { name: '  ', age: ''};

@@ -13,22 +13,17 @@ const Header = ({branding}) => {
    	    }
    	    {branding}
    	    </NavLink>
-   	    
-   	     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-   	     onClick={(e) => e.target.classList.toggle('collapsed')
-   	     }
-   	     > 
-   
-   <span className="icon-bar top-bar"></span>
-
-	<span className="icon-bar middle-bar"></span>
-		<span className="icon-bar middle-bar"></span>
-	<span className="icon-bar bottom-bar"></span>	
-
-
-    </button>
-
-    		<div className='collapse navbar-collapse' id="navbarSupportedContent">
+   	    <input type="checkbox" id='trigger'/>
+   	    <label htmlFor="trigger">
+   	    <div className="navbar-toggler"> 
+           <i></i>
+           <i></i>
+           <i></i>
+           <i></i>
+        </div>
+        </label>
+  
+    		<div className='collapse navbar-collapse' id="fattylee">
       		<ul className="navbar-nav ml-auto">
         		<li className="nav-item">
         		  <NavLink exact activeClassName='is-active' className="nav-link" to="/"><i className='fas fa-home'></i> Home</NavLink>

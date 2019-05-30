@@ -16,7 +16,7 @@ const Contact = ({ contact: { id, name, email, phone, visible }, dispatch }) => 
             }
             >{name} {' '}
             <button
-             className={visible ? `${buttonClass}down`: `${buttonClass}right` }
+             className={visible ? `${buttonClass}up`: `${buttonClass}down` }
             ></button>
             </div>
             <div>

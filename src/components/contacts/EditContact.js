@@ -64,8 +64,8 @@ class EditContact extends Component {
 
 const handleEditContact = async (dispatch, newContact, id, props ) => {
   event.preventDefault();
-
-  let { name, email, phone, } = newContact;
+  newContact.visible = false;
+  let { name, email, phone, visible } = newContact;
   name = name.trim();
   email = email.trim();
   phone = phone.trim();

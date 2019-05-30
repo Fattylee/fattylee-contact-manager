@@ -19,7 +19,7 @@
   box-shadow: 2px 2px 5px white ;
   color: red;
 }
-
+/*
 @move: 9px;
 .navbar-toggler {
   padding: 8px;
@@ -50,3 +50,54 @@
     transform: rotate(45deg);
     top: -@move
   }
+  */
+
+// hamburger toggler
+  .navbar-toggler {
+    width: 40px;
+    padding: 4px;
+    display: block;
+    
+    border: none;
+  }
+  .navbar-toggler i {
+    display: block;
+    height: 4px;
+    width: 27px;
+    background: white;
+    margin: 4px auto;
+    position: relative;
+    transition: all 0.1s linear;
+  }
+  
+ #trigger:checked + label .navbar-toggler i:nth-child(2), #trigger:checked + label .navbar-toggler i:nth-child(3) {
+    width: 0 ;
+  }
+  #trigger:checked + label .navbar-toggler i:nth-child(1) {
+    transform: rotate(45deg);
+   top: 12px;
+  }
+  #trigger:checked + label .navbar-toggler i:nth-child(4) {
+    transform: rotate(-45deg);
+    top: -12px;
+  }
+  [id=trigger] {
+    display: none;
+  }
+  
+  // toggle nav list
+  #fattylee {
+    display: block;
+    max-height: 0;
+    overflow: hidden;
+    transition:all 0.5s linear;
+  }
+  #trigger:checked ~ #fattylee {
+    max-height: 200px;
+  }
+
+@media (min-width: 400px ) {
+   #fattylee {
+     max-height: 200px;
+   }
+}

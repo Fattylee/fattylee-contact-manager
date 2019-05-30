@@ -16,7 +16,7 @@ class Contacts extends Component {
               <h1 className='text-white display-4'>
               <span className='h3'>
               <i 
-              className={showContact ? "fas fa-caret-square-down" : "fas fa-caret-square-right"}
+              className={showContact ? "fas fa-caret-square-up" : "fas fa-caret-square-down"}
               onClick={toggleContact.bind(null, dispatch)}
               ></i>
               <i
